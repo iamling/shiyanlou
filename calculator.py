@@ -31,10 +31,10 @@ for i in range(1,len(sys.argv)):
 		t=int(L[1])
 	except:
 		print("Parameter Error")
-
+	
 	m = ss(t)
 	n = tax(t-m-3500)
 	y=t-m-n
 	y=format(y,".2f")
-	print(s,':',y )
+	print(s,":",y,sep=None)
 
