@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
-import sys
-for i in range(1,len(sys.argv)):
-	L=sys.argv[i].split(':')
-	z=L[0]
-	n=L[1]
-	try:
-		s=int(z)
-		t=int(n)
-	except:
-		print("Parameter Error")
+def ss(money):
+	t=money*(0.08+0.02+0.005+0.06)
+	return t
 
-	t=t*(1-0.08-0.02-0.005-0.06)-3500
+def tax(t):
+
 	if t<=0:
 		m=0
 	elif t<=1500:
@@ -27,9 +21,20 @@ for i in range(1,len(sys.argv)):
 		m=t*0.35 - 5505
 	else:
 		m=t*0.45 - 13505
-	
+	return m	
 
-	y=t-m+3500
+import sys
+for i in range(1,len(sys.argv)):
+	L=sys.argv[i].split(':')
+	try:
+		s=int(L[0])
+		t=int(L[1])
+	except:
+		print("Parameter Error")
+
+	m = ss(t)
+	n = tax(t-m-3500)
+	y=t-m-n
 	y=format(y,".2f")
 	print(s,':',y )
 
