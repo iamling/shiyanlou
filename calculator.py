@@ -36,5 +36,7 @@ for i in range(1,len(sys.argv)):
 	n = tax(t-m-3500)
 	y=t-m-n
 	y=format(y,".2f")
-	print(s,":",y,sep=None)
+	v=str(s)
+	u=str(y)
+	print(v+":"+u)
 
