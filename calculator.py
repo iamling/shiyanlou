@@ -18,7 +18,7 @@ class UserData(object):
 		with open(filename) as file:
 			L=file.readlines()
 		for i in range(1,len(L)+1):
-			self.userdata[int(L[i-1].split(',')[0])]=float(L[i-1].split(',')[1])
+			self.userdata[int(L[i-1].split(',')[0])]=int(L[i-1].split(',')[1])
 	def calculator(self):
 		self.shebaolist={}
 		self.taxlist={}
