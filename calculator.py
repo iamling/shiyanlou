@@ -7,7 +7,7 @@ class config(object):
 		with open(filename) as file:
 			L=file.readlines()
 		for i in range(1,len(L)+1):
-			self._config[L[i-1].split()[0].strip()]=float(L[i-1].split()[2])
+			self._config[L[i-1].split('=')[0].strip()]=float(L[i-1].split('=')[1].strip())
 	def get_config(self,key):
 		return self._config[key]
 
@@ -18,7 +18,7 @@ class UserData(object):
 		with open(filename) as file:
 			L=file.readlines()
 		for i in range(1,len(L)+1):
-			self.userdata[int(L[i-1].split(',')[0])]=int(L[i-1].split(',')[1])
+			self.userdata[int(L[i-1].split(',')[0].strip())]=int(L[i-1].split(',')[1].strip())
 	def calculator(self):
 		self.shebaolist={}
 		self.taxlist={}
@@ -40,7 +40,7 @@ def ss(money,L):
 		money=L['JiShuL']
 	elif money>L['JiShuH']:
 		money=L['JiShuH']
-	t=money*(L['Yanglao']+L['YiLiao']+L['ShiYe']+L['GongShang']+L['ShengYu']+L['GongJiJin'])
+	t=money*(L['YangLao']+L['YiLiao']+L['ShiYe']+L['GongShang']+L['ShengYu']+L['GongJiJin'])
 	return t
 
 def tax(t):
@@ -63,8 +63,8 @@ def tax(t):
 		m=t*0.45 - 13505
 	return m	
 
-import sys
-try:
+if __name__=="__main__":
+	import sys
 	args = sys.argv[1:]
 	index = args.index('-c')
 	configfile=args[index+1]
@@ -72,10 +72,11 @@ try:
 	userdatafile=args[index+1]
 	index = args.index('-o')
 	outputfile=args[index+1]
-except:
-	print("error,don't exit")
 
-L = config (configfile)
-LL= UserData(userdatafile)
-LL.calculator()
-LL.dumptofile(outputfile)
+	#try:
+	L = config (configfile)
+	LL = UserData(userdatafile)
+	LL.calculator()
+	LL.dumptofile(outputfile)
+	#except:
+		#print("no found file,error")
