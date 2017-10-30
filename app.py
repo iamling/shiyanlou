@@ -13,8 +13,8 @@ def index():
     l=[]
     lst=os.listdir("/home/shiyanlou/files/")
     for c in lst:
-        if(os.path.isfile(t="/home/shiyanlou/files/"+str(c)) and c.endswith('.json')):
-            l.append(t)
+        if(os.path.isfile("/home/shiyanlou/files/"+str(c)) and c.endswith('.json')):
+            l.append("/home/shiyanlou/files/"+str(c))
     for i in l:
         f=open(i,encoding='utf-8')
         setting=json.load(f)
