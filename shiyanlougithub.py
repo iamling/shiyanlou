@@ -13,5 +13,5 @@ class shiyanlougithub(scrapy.Spider):
         for re in response.css('div#user-repositories-list li.public'):
             yield{
                     'name':re.css('h3 a::text').re_first("\s\w+\-?\w*\-?\w+"),
-                    'update_time': re.xpath('.//relative-time/@datetime').extract_first()
+                    'update_time': re.css('relative-time::attr(datetime)').extract_first()
                     }
