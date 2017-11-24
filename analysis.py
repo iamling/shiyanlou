@@ -7,8 +7,11 @@ def analysis(file,user_id):
     times = 0
     minutes = 0
 
-    filename='/home/shiyanlou/Code/shiyanlou/'+file
-    diclist=[json.loads(line) for line in open(filename)]
+    try:
+        filename='/home/shiyanlou/Code/'+file
+        diclist=[json.loads(line) for line in open(filename)]
+    except:
+        return 0
     
     dict={}
     l1=[]
@@ -29,11 +32,13 @@ def analysis(file,user_id):
         'user_id':l3,
         'lab':l4,
         'course':l5})
-    df1=df['minutes'].groupby(df['user_id'])
-    times=df1.count()[int(user_id)]
-    minutes = df1.mean()[int(user_id)]*times
-
-
+    try:
+        df1=df['minutes'].groupby(df['user_id'])
+        times=df1.count()[int(user_id)]
+        minutes = df1.mean()[int(user_id)]*times
+    except:
+        return 0
+    
     return times,minutes
 
 if __name__=='__main__':
